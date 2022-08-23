@@ -1,0 +1,25 @@
+:root {
+  --clr-bg: hsl(0, 0%, 0%);
+  --font: white;
+
+}
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+   background: var(--clr-bg);
+}
+#app{
+  scroll-behavior: smooth;
+   background: var(--clr-bg);
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,29 @@
+.container {
+  padding: 1.3rem;
+  h2 {
+    font-weight: 200;
+  }
+  .portfoliosection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      font-family: "Britanica-Black", monospace;
+    }
+    a {
+      flex: 1;
+      color: white;
+      text-decoration: solid;
+      font-size: 2.5rem;
+      font-size: clamp(2rem, calc(10vw + 1px), 3rem);
+      text-transform: uppercase;
+
+      :hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

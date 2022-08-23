@@ -1,0 +1,119 @@
+.h1 {
+  font-family: "Britanica-Black", monospace;
+  font-style: normal;
+  font-weight: 900;
+  font-size: clamp(35px, calc(8vw + 1px), 70px);
+  line-height: 120%;
+  /* or 48px */
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.41) 151.16%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  //   text-fill-color: transparent;
+}
+.h2 {
+  font-family: "Britanica-Bold", monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(14px, calc(4vw + 1px), 24px);
+  line-height: 24px;
+  /* identical to box height */
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 12px 0px;
+}
+.p {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(13px, calc(2.5vw + 1px), 18px);
+  line-height: 160%;
+  /* or 22px */
+
+  color: rgba(255, 255, 255, 0.8);
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 12px 0px;
+}
+.box {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: .4rem;
+  border: rgba(255, 255, 255, 0.41) 1px solid;
+}
+.input {
+  border: none;
+  background: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  ::placeholder {
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+  :active {
+    outline: none;
+  }
+}
+.btn{
+    background: #000;
+    cursor: pointer;
+}
+
+.drawerlist {
+     background: #000;
+  color: white;
+  height: max(100vh, 400px);
+  padding: 1rem;
+  > div {
+    font-size: clamp(1.2rem, 2vw, 3rem);
+    font-family: "Roboto", sans-serif;
+    display: flex;;
+    align-items: center;
+    justify-content: space-between;
+  }
+  ul{
+    height: 70%;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.grid{
+    width: 95%;
+    column-gap: 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    row-gap: 1rem;
+    justify-content: center;
+    margin-top: 2.8rem;
+    div{
+        // background: blue;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

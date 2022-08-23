@@ -1,0 +1,49 @@
+.mint{
+    padding: 2rem;
+    padding-top: 3rem;
+    min-height: max(100vh - 4rem, 500px);
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    width: 100%;
+    margin-inline: auto;
+    max-width: 700px;
+    min-height: max(50vh - 4rem, 300px);
+    padding: 2rem;
+    background: hsl(0, 0%, 100%, .1);
+    backdrop-filter: blur(10px);
+    // filter: blur(.1rem);
+    gap: 1.5rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 .5rem hsl(0, 0%, 100%,.3);
+      p{
+        text-align: center;
+    }
+    input[type="submit"]{
+        border:none;
+        padding: .5rem 1rem;
+        box-shadow: 3px 3px 3px hsl(0, 0%, 0%);
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+}
+.input{
+    padding: .5rem  1rem;
+    width: clamp(1rem, 100%, 30rem);
+    background: white;
+    border:black 1px solid;
+    outline: none;
+  
+    &::placeholder{
+        color:#333;
+    }
+}
+.invisible{
+    // display: none;
+}
+

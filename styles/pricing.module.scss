@@ -1,0 +1,62 @@
+.container {
+  --font-head: 0.9rem;
+  --font-body: 0;
+  padding: 1.3rem;
+  h2 {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 100;
+    font-size: 1.3rem;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 4rem 1rem 4rem;
+    border: 1px solid #333;
+    min-height: 100%;
+    justify-content: center;
+    gap: 1rem;
+    section {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      /* background: red\; */
+      width: 100%;
+      h3 {
+        text-transform: capitalize;
+      }
+    }
+    div {
+      display: flex;
+      width: 90%;
+      font-size:clamp(.7rem, 50%, 1rem);
+      letter-spacing: 0.1ch;
+      justify-content: space-between;
+    }
+    span {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      font-family: monospace;
+      font-size: var(--font);
+    }
+    h3 {
+      font-weight: 100;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    @media (min-width: 800px) {
+      width: 30%;
+    }
+  }
+
+  .boxcon {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    @media (min-width: 800px) {
+      flex-direction: row;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.btn{
+    margin-top: 1rem;
+    width: 60%;
+    padding: 1rem;;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    background: none;
+    border:.1rem solid hsl(0, 0%, 100%,.3);
+    color:white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
