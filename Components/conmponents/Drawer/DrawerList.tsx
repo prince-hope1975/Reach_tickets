@@ -16,7 +16,7 @@ const DrawerList = () => {
       <ul>
         {["Home", "Portfolio", "Pricing", "Review"].map((text, index) => (
           <li key={text} style={{ paddingLeft: 0 }}>
-            <a href={`#${text}`}>{text}</a>
+            <a href={`/#${text}`}>{text}</a>
           </li>
         ))}
         <Link href="/create">

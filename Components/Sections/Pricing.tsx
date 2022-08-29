@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import styles from "../../styles/pricing.module.scss"
+import styles from "../../styles/pricing.module.scss";
 import { RightUpArr } from "../conmponents/Svgs";
+import Link from "next/link";
 
 const Pricing = () => {
   return (
@@ -16,21 +17,27 @@ const Pricing = () => {
                 <h3 style={{}}>{item.secondHead}</h3>
                 <div>
                   {item.Price1}
-                  <span>
-                    BUY NOW <RightUpArr />
-                  </span>
+                  <Link href="/buy">
+                    <span style={{ cursor: "pointer" }}>
+                      <>
+                        BUY NOW <RightUpArr />
+                      </>
+                    </span>
+                  </Link>
                 </div>{" "}
               </section>
               <section>
                 <h3 style={{}}>{item.thirdHead}</h3>
-                <div>
-                  {item.price2}
-                  {item.price2 && (
-                    <span>
-                      BUY NOW <RightUpArr />
-                    </span>
-                  )}
-                </div>
+                <Link href="/buy">
+                  <div style={{ cursor: "pointer" }}>
+                    {item.price2}
+                    {item.price2 && (
+                      <>
+                        BUY NOW <RightUpArr />
+                      </>
+                    )}
+                  </div>
+                </Link>
               </section>
             </div>
           );
@@ -55,12 +62,10 @@ const Pricing = () => {
     </section>
   );
 };
-const BoxCon = styled.div`
-
-`;
+const BoxCon = styled.div``;
 const Container = styled.div`
---font-head:0.9rem;
---font-body:0;
+  --font-head: 0.9rem;
+  --font-body: 0;
   padding: 1.3rem;
   h2 {
     font-family: "Courier New", Courier, monospace;
@@ -109,8 +114,8 @@ const Box = styled.div`
   }
 `;
 const Head = styled.h1`
-font-size: medium;
-font-weight: 100;
+  font-size: medium;
+  font-weight: 100;
   position: relative;
   width: max-content;
   ::before {
@@ -127,21 +132,21 @@ font-weight: 100;
   padding-bottom: 10px;
 `;
 const Addons = styled.div`
-display: flex;
-flex-direction: column;
-gap:1.3rem;
-font-weight: 100;
-letter-spacing: 0.8px;
-div{
   display: flex;
-  gap:0.5rem;
   flex-direction: column;
-}
-  h3{
+  gap: 1.3rem;
+  font-weight: 100;
+  letter-spacing: 0.8px;
+  div {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  h3 {
     font-size: 1rem;
     font-weight: 300;
   }
-`
+`;
 const data = [
   {
     head: "BURNA BOY 02 ARENA",

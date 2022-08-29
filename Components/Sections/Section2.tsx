@@ -13,7 +13,7 @@ const Section2 = () => {
       <motion.div
         initial={{ y: 200, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1, duration: 1, type: "tween" }}
+        transition={{ duration: 1, type: "tween" }}
         // container
         style={{
           gap: "2rem",

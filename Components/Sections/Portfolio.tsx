@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { LargeRightArr } from "../conmponents/Svgs";
 import styles from "../../styles/portfolio.module.scss";
+import Link from "next/link";
+import { motion } from "framer-motion";
 const Portfolio = (props: any) => {
   return (
     <div className={styles.container} id="Portfolio" {...props}>
@@ -10,9 +12,9 @@ const Portfolio = (props: any) => {
       <PortfolioSection className={styles.portfoliosection}>
         {Data.map((item, index) => {
           return (
-            <div key={index}>
-              <a href="#">{item.Text}</a> <LargeRightArr />
-            </div>
+            <motion.div  whileHover={{textDecoration:"underline", cursor:"pointer"}} key={index}>
+              <a target={"_blank"} href={item.link}>{item.Text}</a> <LargeRightArr />
+            </motion.div>
           );
         })}
       </PortfolioSection>
@@ -53,12 +55,15 @@ const PortfolioSection = styled.div`
 const Data = [
   {
     Text: "Fractional Real-Estate",
-  },
-  {
-    Text: "LiveStock",
+    link: "https://realty-seven.vercel.app/",
   },
   {
     Text: "Battleship",
+    link: "https://battle-ship2.netlify.app/",
+  },
+  {
+    Text: "Pyramid Scheme",
+    link: "https://pyramidscheme-3ku2vczgw-prince-hope1975.vercel.app/",
   },
 ];
 export default Portfolio;

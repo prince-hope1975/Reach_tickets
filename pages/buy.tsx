@@ -37,16 +37,16 @@ const Buy = ({ posts }: { posts: any }) => {
   const { connectWallet } = useGlobalContext();
   useEffect(() => {
     connectWallet();
-  }, [connectWallet]);
+  }, []);
   return (
     <div className={styles.buy}>
       {data?.map((prop) => {
         if (!prop?.id || !prop.eventName) return;
-
+        const idx = Math.floor(Math.random() * images.length);
         return (
           <Box
             key={prop.dataId}
-            src={`/${images[Math.floor(Math.random() * images.length)]}`}
+            src={`/${images[idx]}`}
             btnText={`${"Buy"}`}
             func={() => null}
             {...prop}
