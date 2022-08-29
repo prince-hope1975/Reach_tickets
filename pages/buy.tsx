@@ -9,12 +9,12 @@ import { useGlobalContext } from "../context";
 import { Proceed } from "./create";
 import Loading from "../Components/Loading";
 const images = [
-  "alien.png",
+  "monkey2.png",
   "bug.png",
   "cats.png",
   "concept.png",
   "fireEyes.png",
-  "monkey2.png",
+  "alien.png",
 ];
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
@@ -40,9 +40,9 @@ const Buy = ({ posts }: { posts: any }) => {
   }, []);
   return (
     <div className={styles.buy}>
-      {data?.map((prop) => {
+      {data?.map((prop, index) => {
         if (!prop?.id || !prop.eventName) return;
-        const idx = Math.floor(Math.random() * images.length);
+        const idx = index % images.length;
         return (
           <Box
             key={prop.dataId}
