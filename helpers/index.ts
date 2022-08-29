@@ -56,8 +56,7 @@ export const createAsyncInterval = async (func: () => null, time: number) => {
     }, time);
   });
 };
-
-export async function writeData(props: {
+export type dbData = {
   id: number;
   contractID: number;
   eventName: string;
@@ -65,9 +64,29 @@ export async function writeData(props: {
   supply: number;
   price: number;
   eventLocation: string;
-}) {
-  const db = getDatabase();
+  sold:number;
+};
+export async function writeData(props: dbData) {
+  const db = getDatabase(
+    app,
+    "https://nft-algo-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  );
   set(ref(db, "db/" + props.id), {
+    ...props,
+  })
+    .then((res: any) => {
+    })
+    .catch(() => {
+      console.log("An error occured writing to the database");
+    });
+}
+
+export async function editData(props: dbData & {dataId:string}) {
+  const db = getDatabase(
+    app,
+    "https://nft-algo-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  );
+  set(ref(db, "db/" + props.dataId), {
     ...props,
   })
     .then((res: any) => {
@@ -82,20 +101,19 @@ export async function fetchDb() {
   try {
     const db = getDatabase(
       app,
-      "https://nft-algo-default-rtdb.asia-southeast1.firebasedatabase.app/"
+      "https://nft-algo-default-rtdb.asia-southeast1.firebasedatabase.app/" 
     );
-    console.log("db", db);
     const dbRef = ref(db);
     const snapshot = await get(child(dbRef, `db/`));
 
     if (snapshot.exists()) {
-      console.log(snapshot.val());
     } else {
       console.log("No data available");
     }
-    return snapshot.val();
+    const data:dbData = snapshot.val();
+    return data
   } catch (e) {
     console.log(e);
-    return { error: e };
+    return 
   }
 }

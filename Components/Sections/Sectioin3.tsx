@@ -12,6 +12,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
 import { Getstarted } from "../button/getstarted";
 import { useRouter } from "next/router";
+import styles from "../../styles/section2.module.scss"
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const Sectioin3 = () => {
@@ -19,6 +20,7 @@ const Sectioin3 = () => {
   const router = useRouter();
   return (
     <section
+    className={styles.container}
       style={{
         padding: "0 1rem",
         display: "flex",
@@ -26,14 +28,13 @@ const Sectioin3 = () => {
         gap: "1rem",
       }}
     >
-      <Grid item>
-        <H2 style={{ fontSize: "1.2rem" }}>Our Services</H2>
-        <P style={{ fontSize: "11.6px" }}>
+      <Grid >
+        <p >
           Blockly, offers a host of services, such as customized faces for
           tickets, and you can even choose from our host of premade ticket
           skins, all for free. Collect royalties on your tickets and reward
           loyal fans.
-        </P>
+        </p>
       </Grid>
       {!matches ? <SwipeableTextMobileStepper /> : <BidScreenView />}{" "}
       <Getstarted />

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 
 import DrawerList from "./DrawerList";
@@ -10,10 +9,10 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function TemporaryDrawer() {
   const { isOpen, setOpen} = useGlobalContext();
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
+    // top: false,
+    // left: false,
     right: false,
-    bottm: false,
+    // bottm: false,
   });
 
   const toggleDrawer =
@@ -29,12 +28,7 @@ export default function TemporaryDrawer() {
 
       setState({ ...state, [anchor]: open });
     };
-  React.useEffect(() => {
-    // setState({...state, top:isOpen})
-    console.log(isOpen)
-    // toggleDrawer(("top", isOpen)=>("top" as React.KeyboardEvent));
-    console.log("Changing")
-  },[isOpen]);
+
   const list = (anchor: Anchor) => (
     <div
       style={{ width: "auto" }}
@@ -48,9 +42,8 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {(["top"]).map((anchor) => (
+      {(["right"]).map((anchor) => (
         <React.Fragment key={anchor}>
-          {/* <Button onClick={toggleDrawer(anchor, true)}></Button> */}
           <Drawer
           // @ts-ignore
             anchor={anchor}

@@ -12,7 +12,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.1",
-    "@reach-sh/stdlib": "^0.1.11-rc.6",
+    "@reach-sh/stdlib": "^0.1.11-rc.7",
     "@types/styled-components": "^5.1.26",
     "firebase": "^9.9.3",
     "framer-motion": "^6.3.16",

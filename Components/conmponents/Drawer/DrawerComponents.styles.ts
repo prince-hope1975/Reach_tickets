@@ -28,11 +28,13 @@ export const BookingContainer = styled.div`
   background: hsl(209, 82%, 53%);
   width: 80%;
   aspect-ratio: 4/1;
-  margin-top: 2.6rem;
+  cursor: pointer;
+  /* margin-top: 2.6rem; */
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  margin: 0 auto;
   background: linear-gradient(180deg, #35a7ff 0%, #007fe0 100%);
 
 `;

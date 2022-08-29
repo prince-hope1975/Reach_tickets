@@ -1,3 +1,42 @@
+.container {
+  position: relative;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 5rem;
+  > section {
+    display: grid;
+    row-gap: 2rem;
+  }
+  .img {
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    /* flex-direction: row; */
+    display: grid;
+    grid-template-columns: 1fr;
+    > section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "a b";
+      gap: 1rem;
+      > div {
+        :first-of-type {
+          grid-area: b;
+          /* background-color: red; */
+        }
+        :last-of-type {
+          grid-area: auto;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+    /* background-color: red; */
+  }
+}
 .h1 {
   font-family: "Britanica-Black", monospace;
   font-style: normal;
@@ -56,7 +95,8 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  padding: .4rem;
+  padding: 0.4rem;
+  flex-direction: row;
   border: rgba(255, 255, 255, 0.41) 1px solid;
 }
 .input {
@@ -74,46 +114,51 @@
     outline: none;
   }
 }
-.btn{
-    background: #000;
-    cursor: pointer;
+.btn {
+  background: #000;
+  cursor: pointer;
 }
 
 .drawerlist {
-     background: #000;
+  background: #000;
   color: white;
   height: max(100vh, 400px);
   padding: 1rem;
   > div {
     font-size: clamp(1.2rem, 2vw, 3rem);
     font-family: "Roboto", sans-serif;
-    display: flex;;
+    display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  ul{
+  ul {
     height: 70%;
+    padding: 0;
+    margin: 0;
+    width: 20rem;
+    // background: red;
     display: flex;
     list-style: none;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    li{
+      padding: 0;margin: 0;
+    }
   }
 }
 
-.grid{
-    width: 95%;
-    column-gap: 8%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    row-gap: 1rem;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  row-gap: 1rem;
+  justify-content: center;
+  margin-top: 2.8rem;
+  div {
+    // background: blue;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 2.8rem;
-    div{
-        // background: blue;
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  }
 }

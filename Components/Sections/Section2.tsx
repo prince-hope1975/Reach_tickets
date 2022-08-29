@@ -1,15 +1,16 @@
 import React from "react";
 // import { Container } from "../conmponents/Container";
+import styles from "../../styles/section2.module.scss"
 import styled from "styled-components";
 import { H2, H3, P } from "../conmponents/Typography/index.style";
 import { Grid } from "@mui/material";
 import Image from "next/image";
 const Section2 = () => {
   return (
-    <Container>
-      <H2>One, Two, Testing!</H2>
-      <Grid
-        container
+    <section className={styles.container}>
+      <h2>One, Two, Testing!</h2>
+      <div
+        // container
         style={{
           gap: "2rem",
           display: "grid",
@@ -21,17 +22,16 @@ const Section2 = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}
-        >
-          <Grid item>
-            <H3>Tickets for events can be cheap & secure</H3>
+          }}        >
+          <div>
+            <h3>Tickets for events can be cheap & secure</h3>
             <P>
               Gone are the days you had to pay a 20% fee to lanch your tickets,
               just because you needed a secure way to verify them. We provide a
               secure, efficient and more reliable means to hosting events all
               for the fraction of the price
             </P>
-          </Grid>
+          </div>
           <VideoImg />
         </div>
         <Grid item sx={{ display: "grid", gap: "2rem" }} alignItems={"center"}>
@@ -45,8 +45,8 @@ const Section2 = () => {
           </Grid>
           <VideoImg />
         </Grid>
-      </Grid>
-    </Container>
+      </div>
+    </section>
   );
 };
 

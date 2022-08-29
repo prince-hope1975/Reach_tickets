@@ -7,6 +7,11 @@
 //      - Max Resell Price
 //
 // const TOTAL_SEATS = 10;
+
+// I need people to create nfts and access them on my frontend
+// Mint a bunch of Nfts
+// Transfer them to my contract
+// List them on another contract
 const DEADLINE = 3000;
 // const name = Bytes(12);
 const description = Bytes(300);
@@ -18,13 +23,14 @@ const DEFAULT_BUYER = DEFAULT_TYPE.fromObject({
 
 const eventName = Bytes(32);
 const eventSymbol = Bytes(8);
-const eventUrl = Bytes(96);
-const eventMeta = Bytes(32);
+// const eventUrl = Bytes(96);
+// const eventMeta = Bytes(32);
 const eventLocation = Bytes(30);
 const info = Object({
   tokAmt: UInt,
   price: UInt,
   tok: Token,
+  // maxResalePrice: UInt,
   eventName,
   eventSymbol,
   // eventUrl,
@@ -56,7 +62,7 @@ export const main = Reach.App(() => {
   });
 
   const E = Events("notify", {
-    // send: [eventInfo],
+    done: [eventInfo],
     ended: [Bool],
   });
 
@@ -80,11 +86,8 @@ export const main = Reach.App(() => {
   A.publish(price, name, symbol, venueLoacation, tok, tokAmt);
   commit();
 
-  A.only(() => {
-    interact.notify();
-  });
   A.pay([[tokAmt, tok]]);
-
+  A.interact.notify();
   // const DEFAULT_TYPE = Struct([["ticketsBought", UInt]]);
   const def_struct_vals = DEFAULT_TYPE.fromTuple([0]);
   const buyerMap = new Map(DEFAULT_TYPE);
@@ -93,7 +96,7 @@ export const main = Reach.App(() => {
     .invariant(balance() == bal)
     .while(tokAmt > sold && !end)
     .define(() => {
-      view.sold.set(sold)
+      view.sold.set(sold);
     })
     .api(
       Buyers.buy,
@@ -106,9 +109,12 @@ export const main = Reach.App(() => {
       (amt, k) => {
         const prev_struct = fromSome(buyerMap[this], def_struct_vals);
         const prev_amt = Struct.toTuple(prev_struct);
-        buyerMap[this] = DEFAULT_TYPE.fromTuple([prev_amt[0] + amt]);
+        const data = DEFAULT_TYPE.fromTuple([prev_amt[0] + amt]);
+        buyerMap[this] = data;
+        const Amt = balance(tok)>amt?amt:balance(tok)
+        transfer(Amt,tok).to(this)
+        // E.done(data);
         k(true);
-        // E.send({});
         return [bal + price * amt, sold + amt, end];
       }
     )

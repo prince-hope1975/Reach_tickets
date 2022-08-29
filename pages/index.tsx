@@ -31,34 +31,34 @@ const App = () => {
 
   const { wallet, displayMessage, isConnected, Api, turnOffPopup } = useGlobalContext();
 
-  useEffect(() => {
-    if (isConnected && Api.acc) {
-      call();
-    }
-  }, [Api]);
+  // useEffect(() => {
+  //   if (isConnected && Api.acc) {
+  //     call();
+  //   }
+  // }, [Api]);
 
-  const call = async () => {
-    let loopContinue = !!Api;
-    while (loopContinue) {
-      const [loop, out] = await Api.getResult()();
-      // @ts-ignore
-      const outcome = Number(parseInt(out));
-      if (loop) {
-        displayMessage(true, <Loading text={"The Game Ended in a Draw"} />);
-        await turnOffPopup(3);
-        continue;
-      }
-      if (outcome !== 1) {
-        const psb = [[]];
-        console.table({ out, outcome });
-        displayMessage(true, <Loading text={"word"} />);
-        await turnOffPopup(3);
-      } else {
-        displayMessage(true, <Loading text={"The Game Ended in a Draw"} />);
-        await turnOffPopup(3);
-      }
-    }
-  };
+  // const call = async () => {
+  //   let loopContinue = !!Api;
+  //   while (loopContinue) {
+  //     const [loop, out] = await Api.getResult()();
+  //     // @ts-ignore
+  //     const outcome = Number(parseInt(out));
+  //     if (loop) {
+  //       displayMessage(true, <Loading text={"The Game Ended in a Draw"} />);
+  //       await turnOffPopup(3);
+  //       continue;
+  //     }
+  //     if (outcome !== 1) {
+  //       const psb = [[]];
+  //       console.table({ out, outcome });
+  //       displayMessage(true, <Loading text={"word"} />);
+  //       await turnOffPopup(3);
+  //     } else {
+  //       displayMessage(true, <Loading text={"The Game Ended in a Draw"} />);
+  //       await turnOffPopup(3);
+  //     }
+  //   }
+  // };
 
   const deploy = async ({
     supply,
@@ -76,6 +76,7 @@ const App = () => {
     eventMeta?: string;
     eventLocation: string;
   }) => {
+    
     const ctcDeployer = wallet?.contract(backend);
 
     try {
@@ -103,10 +104,8 @@ const App = () => {
           },
         }),
       ]);
-      console.log(await ctcDeployer.getInfo());
     } catch (error) {
       if (error !== 42) console.log(error);
-      console.log(await ctcDeployer.getInfo());
     }
     console.log(await ctcDeployer.getInfo());
   };
@@ -116,49 +115,4 @@ const App = () => {
   return <Main />;
 };
 
-// const Header = ({
-//   gameStarted,
-//   isConnected,
-//   DisconnectWallet,
-//   connectWallet,
-// }: {
-//   gameStarted: boolean;
-//   isConnected: boolean;
-//   DisconnectWallet: () => void;
-//   connectWallet: () => void;
-// }) => {
-//   return (
-//     <header className="w-full h-[4rem] md:h-[7rem] p-2   shadow-md flex items-center  bg-white justify-between text-lg uppercase cursor-pointer text-black">
-//       <p onClick={() => null}>Morra</p>
-//       {gameStarted && (
-//         <div className=" text-gray-100 hover:scale-75 bg-blue-600  rounded shadow-sm transform ease-in-out duration-200 text-[10px] leading-tight flex items-center justify-center text-center px-1 py-2  sm:text-sm sm:py-2 sm:px-3 ">
-//           Quit game
-//         </div>
-//       )}
-//       {gameStarted && (
-//         <div
-//           onClick={() => null}
-//           className=" text-gray-100 hover:scale-75 bg-blue-600  rounded shadow-sm transform ease-in-out duration-200 text-[10px] leading-tight flex items-center justify-center text-center px-1 py-2  sm:text-sm sm:py-2 sm:px-3  "
-//         >
-//           game view
-//         </div>
-//       )}
-//       {isConnected ? (
-//         <div
-//           onClick={DisconnectWallet}
-//           className=" text-gray-100 py-2 px-3 hover:scale-75 bg-blue-600  rounded shadow-sm transform ease-in-out duration-200"
-//         >
-//           Disconnect
-//         </div>
-//       ) : (
-//         <div
-//           onClick={connectWallet}
-//           className="  text-gray-100 hover:scale-75 bg-blue-600  rounded shadow-sm transform ease-in-out duration-200 text-[10px] leading-tight flex items-center justify-center text-center px-1 py-2  sm:text-sm sm:py-2 sm:px-3 "
-//         >
-//           Connect{" "}
-//         </div>
-//       )}
-//     </header>
-//   );
-// };
 export default App;

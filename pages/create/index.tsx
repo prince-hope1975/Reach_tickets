@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import styles from "../../styles/create.module.scss";
 import Image from "next/image";
 import { useGlobalContext } from "../../context";
@@ -11,15 +11,16 @@ const Create = () => {
     useGlobalContext();
 
   const [fxn, setFxn] = React.useState("" as any);
-  const [connect, setConnect] = useState(true);
+  // const [, setConnect] = useState(true);
   const router = useRouter();
   const handleCreate = () => {
-    if (connect) {
+    if (!isConnected) {
       console.log("not connected");
       displayMessage(true, <NotConnected />);
       return;
     }
     console.log("connected");
+
     router.push("/mint");
   };
   const handleConnect = async () => {
@@ -49,30 +50,21 @@ const Create = () => {
     }
   };
   const handleBuy = () => {
-    if (connect) {
+    if (!isConnected) {
       console.log("not connected");
       displayMessage(true, <NotConnected onClick={handleConnectBuy} />);
       return;
     }
+    console.log("Routing")
     router.push("/buy");
+    console.log("Routing")
   };
-
-  React.useLayoutEffect(() => {}, [isConnected]);
 
   const NotConnected = ({ onClick }: { onClick?: () => any }) => {
     return (
       <div className={styles.proceed}>
         <p>Wallet Not connected</p>
         <Btn onClick={onClick ?? handleConnect}>Connect</Btn>
-      </div>
-    );
-  };
-  const Proceed = () => {
-    return (
-      <div className={styles.proceed}>
-        <p>Wallet Connected</p>
-
-        <Btn onClick={() => null}>Proceed</Btn>
       </div>
     );
   };
@@ -105,6 +97,26 @@ const Create = () => {
   );
 };
 
+export const Proceed = ({
+  text,
+  onClick,
+  btnText,
+  children,
+}: {
+  text?: string;
+  onClick?: (...item: any) => any;
+  btnText?: string;
+} & PropsWithChildren) => {
+  return (
+    <div className={styles.proceed}>
+      <p>{text ?? "Wallet Connected"}</p>
+      {children}
+      <Btn onClick={() => (onClick && onClick()) ?? null}>
+        {btnText ?? "Proceed"}
+      </Btn>
+    </div>
+  );
+};
 const Options = ({
   src,
   text,
@@ -128,7 +140,13 @@ const Options = ({
   );
 };
 
-const Btn = ({ children, onClick }: { children: any; onClick: () => any }) => {
+export const Btn = ({
+  children,
+  onClick,
+}: {
+  children: any;
+  onClick: () => any;
+}) => {
   return (
     <motion.div onClick={onClick} className={styles.btn}>
       {children}

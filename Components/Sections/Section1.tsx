@@ -1,13 +1,7 @@
 import React, { PropsWithChildren } from "react";
-import Box from "../conmponents/Box";
-import { Grid } from "@mui/material";
 import styles from "../../styles/section1.module.scss";
-import { H1, P } from "../conmponents/Typography/index.style";
 import Image from "next/image";
-import { Container } from "../conmponents/Container";
-import { Oval } from "../conmponents/Svgs/Svgs.style";
 import { useMediaQuery } from "@mui/material";
-import { Getstarted } from "../button/getstarted";
 import {
   Mail,
   UpRigtArrow,
@@ -18,37 +12,22 @@ import {
   Wired,
   Stripe,
 } from "../conmponents/Svgs";
-import Input from "../conmponents/input";
 
 const Section1 = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   return (
-    <Container id="Home">
+    <section className={styles.container} id="Home">
       <h1 className={styles.h1}>
         BLOCKCHAIN {!matches && <br />} TICKETING {!matches && <br />}PLATFORM
       </h1>
       <section>
-        <div
-          // item
-          style={{
-            overflow: "hidden",
-            display: "flex",
-            position: "relative",
-            minHeight: "8.6rem",
-            minWidth: "100%",
-            placeContent: "center",
-            marginInline: "auto",
-            width: "min-content",
-            aspectRatio: "1/.5",
-          }}
-        >
+        <div className={styles.img}>
           <Image
             src="/collage.png"
             alt="not showing"
-            width={400}
-            height={200}
+            width={400 * 2}
+            height={200 * 2}
           />
-          <Oval />
         </div>
         <div>
           <h2 className={styles.h2}>Create, Buy, Sell</h2>
@@ -79,7 +58,7 @@ const Section1 = () => {
           <Stripe></Stripe>
         </div>
       </div>
-    </Container>
+    </section>
   );
 };
 // @ts-ignore

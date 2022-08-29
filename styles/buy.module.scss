@@ -1,3 +1,34 @@
-.buy{
-    padding-top: 2rem;
+.buy {
+  padding: 5rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 2rem;
+
+  > div {
+    margin: auto;
+  }
+  .box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    :last-child {
+      grid-column: span 2;
+    }
+  }
+  .span {
+    color: #333;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+
+    p {
+      color: white;
+      font-size: 1rem;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+  }
 }

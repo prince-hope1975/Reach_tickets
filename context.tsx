@@ -4,7 +4,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import {  writeData } from "./helpers/index";
+import { writeData } from "./helpers/index";
 import {
   loadStdlib,
   ALGO_WalletConnect as WalletConnect,
@@ -63,7 +63,7 @@ const AppContext = React.createContext(
     isConnected: boolean;
     setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
     Api: {
-      buy: (somn: number) => Promise<any>;
+      buy: (somn: number, id: number) => Promise<any>;
       end: () => Promise<any>;
       getBalance: () => Promise<number | any>;
       displayBalance: () => Promise<void>;
@@ -149,7 +149,6 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
         true,
         `${supply} Tickets being Minted, Please sign the requested transactions...`
       );
-      await turnOffPopup(4);
       const nft = await reach.launchToken(wallet, eventName, eventSymbol, {
         supply,
         decimals: 0,
@@ -157,52 +156,60 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
       });
       await turnOffPopup(1);
       displayMessage(true, `Minted 🥳️🎉️`);
-      await turnOffPopup(1);
-      await turnOffPopup(1);
+      await turnOffPopup(2);
       displayMessage(
         true,
-        `We are transferring your Tickets to our Marketplace, approve the upcoming transaction`
+        `We are transferring your Tickets to our Marketplace, approve the upcoming transactions`
       );
 
-      await Promise.all([
-        // @ts-ignore
-        backend.VenueOrArtist(ctcDeployer, {
-          notify: async () => {
-            displayMessage(true, "Almost Done, just a little longer");
-            const info = await ctcDeployer.getInfo();
-            displayMessage(true, "Almost Done, just a little longer");
-            await writeData({
-              contractID: info,
-              id: nft.id,
-              eventName,
-              eventSymbol,
-              supply,
-              price,
-              eventLocation,
-            });
-            displayMessage(true, "You Just successfully Created Your set");
-
-            // throw 42;
-          },
-          getParams: async () => {
-            return {
-              price: reach.parseCurrency(price),
-              tokAmt: supply,
-              tok: nft.id,
-              eventName,
-              eventSymbol,
-              eventLocation,
-            };
-          },
-        }),
-      ]);
+      try {
+        await Promise.all([
+          // @ts-ignore
+          backend.VenueOrArtist(ctcDeployer, {
+            notify: async () => {
+              displayMessage(true, "Almost Done, just a little longer");
+              await turnOffPopup(3);
+              const info = await ctcDeployer.getInfo();
+              displayMessage(true, "Almost Done, just a little longer");
+              await turnOffPopup(3);
+              await writeData({
+                contractID: info,
+                id: nft.id,
+                eventName,
+                eventSymbol,
+                supply,
+                price,
+                eventLocation,
+                sold:0
+              });
+              displayMessage(true, "You Just successfully Created Your set");
+              throw 42;
+            },
+            getParams: async () => {
+              return {
+                price: reach.parseCurrency(price),
+                tokAmt: supply,
+                tok: nft.id,
+                eventName,
+                eventSymbol,
+                eventLocation,
+              };
+            },
+          }),
+        ]);
+      } catch (error) {
+        if (error !== 42) console.log(error);
+      }
       console.log(await ctcDeployer.getInfo());
     } catch (error) {
-      if (error !== 42) console.log(error);
-      displayMessage(true, "An error occured");
-      console.log(await ctcDeployer.getInfo());
+      if (error !== 42) {
+        console.log(error);
+        displayMessage(true, "An error occured");
+      }
+      const info = await ctcDeployer.getInfo();
+      console.log({ info });
     }
-    console.log(await ctcDeployer.getInfo());
+    return;
   };
 
   const turnOffPopup = async (seconds: number, executable?: () => any) => {
@@ -220,16 +227,22 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
   };
   const BUYER = async () => {
     const acc = await reach.getDefaultAccount();
-    const ctc = () =>
+    const ctc = (info?: any) =>
       acc.contract(
         backend,
         // @ts-ignore
-        reach.bigNumberToNumber(contractInfo)
+        reach.bigNumberToNumber(info || contractInfo)
       );
 
-    const buy = async (howMany: number) => {
+    const buy = async (howMany: number, info?: any) => {
       try {
-        const statement = await ctc().apis.buyers.buy(howMany);
+        const statement = await acc
+          .contract(
+            backend,
+            // @ts-ignore
+            reach.bigNumberToNumber(info || contractInfo)
+          )
+          .apis.buyers.buy(Number(howMany));
         console.log(statement);
         return statement;
       } catch (error) {

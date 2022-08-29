@@ -1,0 +1,40 @@
+.container {
+  padding: 1rem 2rem;
+  h2 {
+    font-family: "Britanica-Bold", monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1.1rem, calc(4vw + 1px), 1.6rem);
+    line-height: 24px;
+    /* identical to box height */
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 12px 0px;
+  }
+  h3{  /* A video is worth a thousand words */
+  font-family: "monospace";
+  
+  font-style: normal;
+  font-size: clamp(1rem, calc(2vw + 1px), 1.1rem);
+  line-height: 17px;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+  p {
+
+    line-height: 1.22rem;
+    font-size: clamp(.8rem, 1.7vw, 1rem);
+    color:rgba(255, 255, 255, 0.7)
+  }
+  @media (min-width: 786px) {
+    display: flex;
+    flex-direction: column;
+  }
+}

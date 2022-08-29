@@ -2,16 +2,16 @@ import React from "react";
 import styles from "../../../styles/section1.module.scss";
 import { BookingContainer } from "./DrawerComponents.styles";
 import Link from "next/link";
-import { Xclose } from "../Svgs";
+import { Xclose, BlockIcon } from "../Svgs";
 import { useGlobalContext } from "../../../context";
 import { useRouter } from "next/router";
 const DrawerList = () => {
   const { connectWallet, isConnected, DisconnectWallet } = useGlobalContext();
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className={styles.drawerlist}>
       <div>
-        Menu <Xclose />
+        <BlockIcon /> <Xclose />
       </div>
       <ul>
         {["Home", "Portfolio", "Pricing", "Review"].map((text, index) => (
@@ -19,24 +19,28 @@ const DrawerList = () => {
             <a href={`#${text}`}>{text}</a>
           </li>
         ))}
-        <BookingContainer>
-          <Link href="/create">Launch your next Tickets</Link>
-        </BookingContainer>
-        <BookingContainer>
-          {!isConnected ? (
-            <div onClick={() => connectWallet()}>Connect</div>
-          ) : (
-            <div
-              onClick={() => {
-                
-                DisconnectWallet();
-                router.reload()
-              }}
-            >
-              Disconnect
-            </div>
-          )}
-        </BookingContainer>
+        <Link href="/create">
+          <BookingContainer>Get Started</BookingContainer>
+        </Link>
+
+        {!isConnected ? (
+          <div
+            style={{ width: "100%", marginInline: "auto" }}
+            onClick={() => connectWallet()}
+          >
+            <BookingContainer>Connect</BookingContainer>
+          </div>
+        ) : (
+          <div
+            style={{ width: "100%", marginInline: "auto" }}
+            onClick={() => {
+              DisconnectWallet();
+              router.reload();
+            }}
+          >
+            <BookingContainer>Disconnect</BookingContainer>
+          </div>
+        )}
       </ul>
     </div>
   );
