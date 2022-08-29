@@ -1,15 +1,19 @@
 import React from "react";
 // import { Container } from "../conmponents/Container";
-import styles from "../../styles/section2.module.scss"
+import styles from "../../styles/section2.module.scss";
 import styled from "styled-components";
 import { H2, H3, P } from "../conmponents/Typography/index.style";
 import { Grid } from "@mui/material";
+import { motion } from "framer-motion";
 import Image from "next/image";
 const Section2 = () => {
   return (
     <section className={styles.container}>
       <h2>One, Two, Testing!</h2>
-      <div
+      <motion.div
+        initial={{ y: 200, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1, duration: 1, type: "tween" }}
         // container
         style={{
           gap: "2rem",
@@ -22,7 +26,8 @@ const Section2 = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}        >
+          }}
+        >
           <div>
             <h3>Tickets for events can be cheap & secure</h3>
             <P>
@@ -45,7 +50,7 @@ const Section2 = () => {
           </Grid>
           <VideoImg />
         </Grid>
-      </div>
+      </motion.div>
     </section>
   );
 };

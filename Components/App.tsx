@@ -11,12 +11,8 @@ import { useGlobalContext } from "../context";
 import { useEffect } from "react";
 function App() {
 
-  const {displayMessage} = useGlobalContext()
   const matched = useMediaQuery("(min-width: 1200px)");
 
-  useEffect(()=>{
-    displayMessage(true,"Hello")
-  },[])
   return (
     <>
       <main

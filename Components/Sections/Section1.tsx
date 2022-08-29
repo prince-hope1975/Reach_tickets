@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from "react";
 import styles from "../../styles/section1.module.scss";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
+import { motion } from "framer-motion";
 import {
   Mail,
   UpRigtArrow,
@@ -17,18 +18,29 @@ const Section1 = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   return (
     <section className={styles.container} id="Home">
-      <h1 className={styles.h1}>
+      <motion.h1
+        className={styles.h1}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1, duration: 1, type: "tween" }}
+      >
         BLOCKCHAIN {!matches && <br />} TICKETING {!matches && <br />}PLATFORM
-      </h1>
+      </motion.h1>
       <section>
-        <div className={styles.img}>
-          <Image
-            src="/collage.png"
-            alt="not showing"
-            width={400 * 2}
-            height={200 * 2}
-          />
-        </div>
+        <motion.div className={styles.img}>
+          <motion.div
+            initial={{ y: 200, opacity:0 }}
+            animate={{ y: 0, opacity:1 }}
+            transition={{ delay: 1, duration: 1, type: "tween" }}
+          >
+            <Image
+              src="/collage.png"
+              alt="not showing"
+              width={400 * 2}
+              height={200 * 2}
+            />
+          </motion.div>
+        </motion.div>
         <div>
           <h2 className={styles.h2}>Create, Buy, Sell</h2>
           <p className={styles.p}>

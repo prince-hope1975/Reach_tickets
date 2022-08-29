@@ -37,7 +37,7 @@ const Buy = ({ posts }: { posts: any }) => {
   const { connectWallet } = useGlobalContext();
   useEffect(() => {
     connectWallet();
-  }, []);
+  }, [connectWallet]);
   return (
     <div className={styles.buy}>
       {data?.map((prop) => {

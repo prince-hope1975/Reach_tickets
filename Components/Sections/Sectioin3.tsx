@@ -17,7 +17,6 @@ import styles from "../../styles/section2.module.scss"
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const Sectioin3 = () => {
   const matches = useMediaQuery("(min-width: 600px)");
-  const router = useRouter();
   return (
     <section
     className={styles.container}

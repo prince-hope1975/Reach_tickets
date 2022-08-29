@@ -12,6 +12,7 @@
   .img {
     display: flex;
     justify-content: center;
+    overflow: hidden;
   }
   @media (min-width: 768px) {
     /* flex-direction: row; */
