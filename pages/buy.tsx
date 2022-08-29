@@ -68,13 +68,10 @@ const Box = ({
   sold,
   dataId,
   src,
-  text,
   btnText,
-  func,
 }: {
   src?: string;
   dataId: string;
-  text?: string;
   btnText?: string;
   contractID: number;
   eventLocation: string;
@@ -99,14 +96,12 @@ const Box = ({
 
   const { Api, displayMessage, connectWallet, isConnected, turnOffPopup } =
     useGlobalContext();
-  // const [amount, setAmount] = useState(0);
   const handleBuy = async () => {
     await connectWallet();
     displayMessage(true, <Prompt />);
   };
   const buy = async (amount: number) => {
     if (amount < 1) {
-
       return displayMessage(
         true,
         <Loading text="Amount cannot be less than 1" error />
@@ -180,7 +175,6 @@ const Box = ({
         scale: 0.95,
       }}
       className={createSectionStyle.options}
-      // onClick={() => router.push(`/buy`)}
     >
       <div className={createSectionStyle.img}>
         <Image src={src ?? "/monkey.png"} height={300} width={250} />
@@ -209,8 +203,6 @@ const Box = ({
           </p>
         </span>
       </div>
-      {/* <p>{text ?? "Create your own set"}</p> */}
-
       <Btn onClick={() => handleBuy()}>{btnText ?? "Buy"}</Btn>
     </motion.div>
   );

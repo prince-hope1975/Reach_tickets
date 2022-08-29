@@ -1,5 +1,3 @@
-import { InputProps } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/mint.module.scss";
 import { useGlobalContext } from "../context";
@@ -11,7 +9,7 @@ function Send() {
   const [eventLocation, setLocation] = useState("");
   const [supply, setSupply] = useState(0);
   const [price, setPrice] = useState(0);
-  const { wallet, displayMessage, Api, deploy, connectWallet, turnOffPopup } =
+  const { displayMessage, Api, deploy, connectWallet, turnOffPopup } =
     useGlobalContext();
   // This will be used to route after actions have completed
   const router = useRouter();
@@ -43,40 +41,23 @@ function Send() {
       displayMessage(true, "An error occured during minting");
     }
   }
-  const handleSubmit = async () => {};
-  // useEffect(() => {
-  //   (async () => {
-  //     console.log("writing")
-  //     await writeData({
-  //       id: 1,
-  //       contractID: 0,
-  //       eventLocation,
-  //       eventName,
-  //       eventSymbol,
-  //       price,
-  //       supply,
-  //     });
-  //     console.log("done");
-
-  //   })();
-  // }, []);
-  const Layout = (props: any) => {
-    return (
-      <motion.div
-        initial={{ opacity: 0, x: -200 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 200 }}
-        className={props.className}
-        {...props}
-      >
-        {props.children}
-      </motion.div>
-    );
-  };
+  // const Layout = (props: any) => {
+  //   return (
+  //     <motion.div
+  //       initial={{ opacity: 0, x: -200 }}
+  //       animate={{ opacity: 1, x: 0 }}
+  //       exit={{ opacity: 0, x: 200 }}
+  //       className={props.className}
+  //       {...props}
+  //     >
+  //       {props.children}
+  //     </motion.div>
+  //   );
+  // };
 
   return (
-    <div>
-      <AnimatePresence>
+    <>
+      <section>
         <div className={styles.mint}>
           <form className={styles.form}>
             <input
@@ -128,8 +109,8 @@ function Send() {
             </p>
           </form>
         </div>
-      </AnimatePresence>
-    </div>
+      </section>
+    </>
   );
 }
 

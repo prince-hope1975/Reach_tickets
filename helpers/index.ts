@@ -2,7 +2,6 @@ import { Variants } from "framer-motion";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getDatabase, ref, set, onValue, get, child } from "firebase/database";
-import { metadata } from "./types";
 const firebaseConfig = {
   apiKey: "AIzaSyDSpKUpt07ssUs4ExOjHwgjG6jKy3ODbbo",
   authDomain: "nft-algo.firebaseapp.com",

@@ -7,7 +7,6 @@ import { BlockIcon, HamburgerIcon } from "../Svgs";
 import TemporaryDrawer from "../Drawer";
 import Link from "next/link";
 
-import { motion } from "framer-motion";
 // other imports
 import { useGlobalContext } from "../../../context";
 export default function ButtonAppBar() {

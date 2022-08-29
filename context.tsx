@@ -2,7 +2,6 @@ import React, {
   PropsWithChildren,
   useContext,
   useState,
-  useEffect,
 } from "react";
 import { writeData } from "./helpers/index";
 import {
@@ -133,7 +132,6 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
     }: {
       supply: number;
       price: number;
-      // id: number | string;
       eventName: string;
       eventSymbol: string;
       eventUrl?: string;
